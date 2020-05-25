@@ -1,0 +1,67 @@
+<header>
+  <nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm  border-bottom box-shadow mb-3 cloud-up-nav"
+  >
+    <a class="navbar-brand" [routerLink]="['']">
+      <img class="logo" src="assets/logo.png" />
+    </a>
+    <div class="main-header">
+      <mat-icon class="cart-icon" [matMenuTriggerFor]="menu"
+        >shopping_cart</mat-icon
+      >
+    </div>
+  </nav>
+</header>
+<mat-menu #menu="matMenu" class="custom-mat-menu">
+  <div class="selected-preview">
+    <div class="selected-preview-list">
+      <div class="selected-preview-heading">
+        <mat-icon [routerLink]="['/summary/1']">open_in_new</mat-icon>
+        <input
+          (click)="$event.stopPropagation()"
+          [(ngModel)]="firstListName"
+          (ngModelChange)="onListNameChanged($event, 0)"
+        />
+      </div>
+      <div
+        class="selected-preview-content"
+        *ngFor="let selected of productsInFirstList | async"
+      >
+        <div class="selected-preview-item">
+          <img src="{{ selected.image }}" class="selected-preview-item-image" />
+          <span>{{ selected.name }}</span>
+        </div>
+      </div>
+      <div class="total">
+        <strong
+          >Total {{ (productsInFirstList | async)?.length * 150 }} $</strong
+        >
+      </div>
+    </div>
+    <div class="selected-preview-list">
+      <div class="selected-preview-heading">
+        <mat-icon [routerLink]="['/summary/2']">open_in_new</mat-icon>
+        <input
+          (click)="$event.stopPropagation()"
+          [(ngModel)]="secondListname"
+          (ngModelChange)="onListNameChanged($event, 1)"
+        />
+      </div>
+
+      <div
+        class="selected-preview-content"
+        *ngFor="let selected of productsInSecondtList | async"
+      >
+        <div class="selected-preview-item">
+          <img src="{{ selected.image }}" class="selected-preview-item-image" />
+          <span>{{ selected.name }}</span>
+        </div>
+      </div>
+      <div class="total">
+        <strong>
+          Total {{ (productsInSecondtList | async)?.length * 150 }} $</strong
+        >
+      </div>
+    </div>
+  </div>
+</mat-menu>

@@ -1,0 +1,48 @@
+<div class="summary-wrapper">
+  <div class="summary-wrapper-list-name">
+    <span class="list-name">{{ listName }}</span>
+  </div>
+  <div class="column-labels">
+    <label class="product-image">Logo</label>
+    <label class="product-quantity">Family</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+  </div>
+  <div *ngFor="let product of productList | async">
+    <div class="product">
+      <div class="product-image">
+        <img src="{{ product.image }}" />
+      </div>
+      <div class="product-quantity">
+        <p>{{ product.family }}</p>
+      </div>
+      <div class="product-details">
+        <div class="product-title">{{ product.name }}</div>
+        <p class="product-description">
+          {{ product.description }}
+        </p>
+      </div>
+      <div class="product-price">
+        <div *ngFor="let productItem of product.pricing">
+          <div *ngFor="let item of productItem | keyvalue">
+            <ng-container *ngIf="item.key && item.value">
+              <b>{{ item.key | titlecase }}</b> : {{ item.value }}
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="summary__footer">
+    <button type="button" class="btn btn-info">
+      <a href="https://codevalue.net/"> </a> Ask The Experts
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [routerLink]="['/billing', listIndex]"
+    >
+      Billing
+    </button>
+  </div>
+</div>

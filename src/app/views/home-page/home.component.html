@@ -1,0 +1,61 @@
+<div class="home">
+  <!-- Search Bar -->
+  <div class="home-search-bar">
+    <form class="home-search-bar-form">
+      <mat-form-field class="home-search-bar-form-input">
+        <input
+          type="text"
+          placeholder="Search..."
+          aria-label="Search..."
+          matInput
+          [formControl]="mainSearchControl"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="onSelectionChanged($event.option.value)"
+          autoActiveFirstOption
+          [displayWith]="displayFn"
+        >
+          <mat-option
+            *ngFor="let option of autoCompleteSuggestions | async"
+            [value]="option"
+          >
+            <span [ngClass]="{ suggestion: option.isQueryRelated }">{{
+              option.name | titlecase
+            }}</span>
+
+            <span class="family">{{ option.family | titlecase }}</span>
+            <span *ngIf="option.isQueryRelated" class="suggested"
+              >(suggested)</span
+            >
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+  <!-- Suggested Vendors -->
+  <div class="home-suggestions" *ngIf="!isSuggestedSectionHidden">
+    <div *ngFor="let vendor of vendorsList">
+      <product-card
+        [cardItem]="vendor"
+        (navigateTo)="navigateToOverView($event)"
+      ></product-card>
+    </div>
+  </div>
+  <!-- Products -->
+  <div class="home-products" *ngIf="isSuggestedSectionHidden">
+    <div class="home-products-no-results" *ngIf="noResults">
+      <img class="no-results" src="assets/no_result.png" />
+    </div>
+    <div *ngFor="let product of filteredProductsList | async">
+      <product-card
+        *ngIf="!noResults"
+        (navigateTo)="navigateToOverView($event)"
+        (addProductToList)="addProductTolist($event)"
+        [cardItem]="product"
+        [numberOfComparableLists]="numberOfComparableLists"
+      ></product-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+/* Global settings */
+$color-border: #eee;
+$color-label: #aaa;
+$font-default: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+  Helvetica, Arial, sans-serif;
+$font-bold: "HelveticaNeue-Medium", "Helvetica Neue Medium";
+
+/* Global "table" column settings */
+.product-image {
+  float: left;
+  width: 20%;
+}
+.product-details {
+  float: left;
+  width: 37%;
+}
+.product-price {
+  float: left;
+  width: 30%;
+  padding-bottom: 10px;
+}
+.product-quantity {
+  float: left;
+  width: 10%;
+}
+.product-removal {
+  float: left;
+  width: 9%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-line-price {
+  float: left;
+  width: 12%;
+  text-align: right;
+}
+
+/* This is used as the traditional .clearfix class */
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+}
+.group:after {
+  clear: both;
+}
+.group {
+  zoom: 1;
+}
+
+/* Column headers */
+.column-labels {
+  label {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+/* Product entries */
+.product {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+
+  .product-image {
+    text-align: center;
+    img {
+      width: 100px;
+    }
+  }
+
+  .product-details {
+    .product-title {
+      margin-right: 20px;
+      font-family: $font-bold;
+    }
+    .product-description {
+      margin: 5px 20px 5px 0;
+      line-height: 1.4em;
+    }
+  }
+
+  .product-quantity {
+    input {
+      width: 40px;
+    }
+  }
+}
+
+.checkout {
+  float: right;
+  border: 0;
+  margin-top: 20px;
+  padding: 6px 25px;
+  background-color: #1f95e1;
+  color: #fff;
+  font-size: 25px;
+  border-radius: 3px;
+  a {
+    color: white;
+  }
+}
+
+.summary-wrapper-list-name {
+  padding-bottom: 25px;
+  display: flex;
+  justify-content: center;
+}
+.summary__footer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 25px;
+}
+
+.list-name {
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+}
+.btn {
+  max-height: 50px;
+}

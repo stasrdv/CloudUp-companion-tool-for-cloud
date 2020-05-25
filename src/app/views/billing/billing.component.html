@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="card">
+    <div class="row">
+      <div class="col">
+        <a>
+          <img src="assets/logo.png" />
+        </a>
+      </div>
+      <div class="col company-details">
+        <h2 class="name">
+          <a target="_blank" href="https://codevalue.com/">
+            CodeValue
+          </a>
+        </h2>
+        <div>1 Hahhoshlim St. Herzliya Pituach, Israel 4673300</div>
+        <div>+972 (74) 703-0232</div>
+        <div>info@codevalue.net</div>
+      </div>
+    </div>
+
+    <div class="table-responsive-sm">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="center">#</th>
+            <th>Item</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of productList; let i = index">
+            <td class="center">{{ i + 1 }}</td>
+            <td class="left strong">{{ product.name }}</td>
+            <td class="left">{{ product.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-sm-5 ml-auto">
+        <table class="table table-clear">
+          <tbody>
+            <tr>
+              <td class="left">
+                <strong>Load</strong>
+              </td>
+              <td class="select no right">
+                <mat-select>
+                  <mat-option
+                    *ngFor="let load of loads"
+                    [value]="load"
+                    (onSelectionChange)="onLoadChanged($event)"
+                  >
+                    {{ load.loadType }}
+                  </mat-option>
+                </mat-select>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="left">
+                <strong>Total</strong>
+              </td>
+              <td class="right">
+                <strong>{{ price }}$</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<mat-card class="product-card">
+  <div *ngIf="cardItem.reason" class="arrow_box">
+    <p>{{ cardItem.reason }}</p>
+  </div>
+  <div class="product-card-control" *ngIf="cardItem.vendorId">
+    <ng-container *ngIf="numberOfComparableLists">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <div *ngFor="let list of numberOfComparableLists; let i = index">
+          <button mat-menu-item (click)="addItemToList(i, cardItem)">
+            <mat-icon>add_circle</mat-icon>
+            <span>Add To List {{ i + 1 }} </span>
+          </button>
+        </div>
+      </mat-menu>
+    </ng-container>
+
+    <!-- Match Quality -->
+    <div *ngIf="cardItem.quality" class="match">
+      <span>Match</span>
+      <p>
+        <ngb-progressbar
+          [showValue]="true"
+          type="info"
+          [value]="cardItem.quality * 50"
+        ></ngb-progressbar>
+      </p>
+    </div>
+    <mat-icon *ngIf="isSelected">check_circle</mat-icon>
+  </div>
+
+  <mat-card-header>
+    <mat-card-title> {{ cardItem.name }}</mat-card-title>
+  </mat-card-header>
+  <img
+    mat-card-image
+    matTooltip="Please click the picture to see full details"
+    (click)="navigateToOverView(cardItem.id)"
+    src="{{ cardItem.image }}"
+  />
+  <mat-card-subtitle
+    ><a href="cardItem.url">{{ cardItem.url }}</a></mat-card-subtitle
+  >
+  <mat-card-content>
+    <p class="additional">
+      {{ cardItem.description }}
+    </p>
+  </mat-card-content>
+</mat-card>
