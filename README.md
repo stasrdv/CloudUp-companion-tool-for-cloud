@@ -1,3 +1,5 @@
+https://www.linkedin.com/feed/update/urn:li:activity:6617690367347294208/
+
 # CloudUpApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
